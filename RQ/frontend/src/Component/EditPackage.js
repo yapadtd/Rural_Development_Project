@@ -20,9 +20,9 @@ const EditPackage = () => {
   }, [])
 
   const fetchPackage = async () => {
-    const response = await fetch(`http://localhost:8060/package/package/${params.id}`);
+    const response = await fetch(`http://localhost:8060/request/request/${params.id}`);
     const data = await response.json();
-    setPackageDetails(data.package);
+    setPackageDetails(data.request);
   } 
 
   const handleInputChange = (e) => {
@@ -36,7 +36,7 @@ const EditPackage = () => {
   const updatePackage = (e) => {
     e.preventDefault();
     console.log(updatedPackageDetails);
-    axios.put(`http://localhost:8060/package/package/update/${params.id}`, updatedPackageDetails).then((res) => {
+    axios.put(`http://localhost:8060/request/update/${params.id}`, updatedPackageDetails).then((res) => {
       if (res.data.success) {
         alert("package update succesfully");
         navigate("/allPackages/*" + location.search);
@@ -72,7 +72,7 @@ const EditPackage = () => {
             name="package_id"
             id="package_id"
             placeholder="Enter Package ID"
-            defaultValue={packageDetails.package_id}
+            defaultValue={packageDetails.divisionID}
             onChange={handleInputChange}
           />
         </div>
@@ -86,7 +86,7 @@ const EditPackage = () => {
             name="package_type"
             id="package_type"
             placeholder="Enter Package Type"
-            defaultValue={packageDetails.package_type}
+            defaultValue={packageDetails.title}
             onChange={handleInputChange}
           />
         </div>
@@ -101,7 +101,7 @@ const EditPackage = () => {
             id="package_name"
             name='package_name'
             placeholder="Enter Package Name"
-            defaultValue={packageDetails.package_name}
+            defaultValue={packageDetails.description}
             onChange={handleInputChange}
           />
         </div> 
@@ -116,7 +116,7 @@ const EditPackage = () => {
             id="day_range"
             name='day_range'
             placeholder="Enter Day Range"
-            defaultValue={packageDetails.day_range}
+            defaultValue={packageDetails.name}
             onChange={handleInputChange}
           />
         </div>
@@ -131,7 +131,7 @@ const EditPackage = () => {
             id="price_range"
             name='price_range'
             placeholder="Enter Price Range"
-            defaultValue={packageDetails.price_range}
+            defaultValue={packageDetails.address}
             onChange={handleInputChange}
           />
         </div>
@@ -146,7 +146,7 @@ const EditPackage = () => {
             id="other_details"
             name='other_details'
             placeholder="Enter Other Details"
-            defaultValue={packageDetails.other_details}
+            defaultValue={packageDetails.division}
             onChange={handleInputChange}
           />
         </div>
